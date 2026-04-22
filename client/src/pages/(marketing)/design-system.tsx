@@ -10,18 +10,18 @@ import {
   AlertDialogHeader,
   AlertDialogTitle,
   AlertDialogTrigger,
-} from '@/components/ui/alert-dialog'
-import { Badge } from '@/components/ui/badge'
-import { Button } from '@/components/ui/button'
-import { ButtonGroup } from '@/components/ui/button-group'
+} from "@/components/ui/alert-dialog"
+import { Badge } from "@/components/ui/badge"
+import { Button } from "@/components/ui/button"
+import { ButtonGroup } from "@/components/ui/button-group"
 import {
   Card,
   CardContent,
   CardDescription,
   CardHeader,
   CardTitle,
-} from '@/components/ui/card'
-import { Checkbox } from '@/components/ui/checkbox'
+} from "@/components/ui/card"
+import { Checkbox } from "@/components/ui/checkbox"
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -30,28 +30,25 @@ import {
   DropdownMenuLabel,
   DropdownMenuSeparator,
   DropdownMenuTrigger,
-} from '@/components/ui/dropdown-menu'
-import { Field, FieldGroup } from '@/components/ui/field'
+} from "@/components/ui/dropdown-menu"
+import { Field, FieldGroup } from "@/components/ui/field"
 import {
   InputGroup,
   InputGroupAddon,
   InputGroupInput,
   InputGroupText,
-} from '@/components/ui/input-group'
+} from "@/components/ui/input-group"
 import {
   Item,
   ItemActions,
   ItemContent,
   ItemDescription,
   ItemTitle,
-} from '@/components/ui/item'
-import {
-  RadioGroup,
-  RadioGroupItem,
-} from '@/components/ui/radio-group'
-import { Slider } from '@/components/ui/slider'
-import { Switch } from '@/components/ui/switch'
-import { Textarea } from '@/components/ui/textarea'
+} from "@/components/ui/item"
+import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group"
+import { Slider } from "@/components/ui/slider"
+import { Switch } from "@/components/ui/switch"
+import { Textarea } from "@/components/ui/textarea"
 
 import {
   CopyIcon,
@@ -70,14 +67,17 @@ import {
   CaretRightIcon,
   MagnifyingGlassIcon,
   GearIcon,
-  CaretUpIcon
+  CaretUpIcon,
 } from "@phosphor-icons/react"
 
-export default function App() {
+export default function DesignSystem() {
   const [sliderValue, setSliderValue] = React.useState<readonly number[]>([500])
-  const handleSliderValueChange = React.useCallback((value: number | readonly number[]) => {
-    setSliderValue(Array.isArray(value) ? value : [value])
-  }, [])
+  const handleSliderValueChange = React.useCallback(
+    (value: number | readonly number[]) => {
+      setSliderValue(Array.isArray(value) ? value : [value])
+    },
+    []
+  )
 
   return (
     <div className="flex min-h-screen w-full flex-col items-center justify-center bg-muted p-4 sm:p-6 lg:p-12 dark:bg-background">
