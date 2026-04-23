@@ -32,11 +32,14 @@ const app = new Elysia()
       .all("/*", async (ctx) => auth.handler(ctx.request))
   )
   .use(protectedRoutes)
-  .listen(3000);
+if (process.env.NODE_ENV !== "production" || process.env.VERCEL !== "1") {
+  app.listen(3000);
+  logger.info("server started", {
+    host: app.server?.hostname,
+    port: app.server?.port,
+    env: process.env.NODE_ENV ?? "development",
+    corsOrigins,
+  });
+}
 
-logger.info("server started", {
-  host: app.server?.hostname,
-  port: app.server?.port,
-  env: process.env.NODE_ENV ?? "development",
-  corsOrigins,
-});
+export default app;
