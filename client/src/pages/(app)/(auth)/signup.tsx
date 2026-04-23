@@ -18,7 +18,12 @@ import {
   FieldError,
 } from "@/components/ui/field"
 import { Input } from "@/components/ui/input"
-import { InputGroup, InputGroupInput, InputGroupAddon, InputGroupButton } from "@/components/ui/input-group"
+import {
+  InputGroup,
+  InputGroupInput,
+  InputGroupAddon,
+  InputGroupButton,
+} from "@/components/ui/input-group"
 import { SpinnerIcon, EyeIcon, EyeClosedIcon } from "@phosphor-icons/react"
 import GoogleIcon from "@/components/google-icon"
 import MicrosoftIcon from "@/components/microsoft-icon"
@@ -65,13 +70,11 @@ export default function SignUpPage() {
     <div className="flex min-h-svh flex-col items-center justify-center bg-muted p-4 sm:p-6 lg:p-12 dark:bg-background">
       <div className="w-full max-w-sm">
         <Card>
-          <CardHeader className="pb-6">
-            <CardTitle className="text-3xl font-heading tracking-tight mb-1">
+          <CardHeader className="pb-2">
+            <CardTitle className="mb-1 font-heading text-3xl tracking-tight">
               Sign up
             </CardTitle>
-            <CardDescription>
-              Create an account to get started.
-            </CardDescription>
+            <CardDescription>Create an account to get started.</CardDescription>
           </CardHeader>
           <CardContent>
             <form onSubmit={handleSignUp}>
@@ -137,7 +140,12 @@ export default function SignUpPage() {
                 {error && <FieldError>{error}</FieldError>}
 
                 <Field className="pt-1">
-                  <Button type="submit" size="lg" className="w-full font-medium" disabled={loading}>
+                  <Button
+                    type="submit"
+                    size="lg"
+                    className="w-full font-medium"
+                    disabled={loading}
+                  >
                     {loading ? (
                       <>
                         <SpinnerIcon className="mr-2 animate-spin" />
@@ -176,9 +184,12 @@ export default function SignUpPage() {
                   </Button>
                 </Field>
 
-                <FieldDescription className="text-center pt-1">
+                <FieldDescription className="pt-1 text-center">
                   Already have an account?{" "}
-                  <Link to="/login" className="underline-offset-4 hover:underline">
+                  <Link
+                    to="/login"
+                    className="underline-offset-4 hover:underline"
+                  >
                     Sign in
                   </Link>
                 </FieldDescription>

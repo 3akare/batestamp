@@ -4,6 +4,7 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "dev": "bun run --watch src/index.ts",
+    "db:push": "bun ./src/db/init-db.ts",
     "db:migrate": "bunx --bun @better-auth/cli migrate --config src/lib/auth.ts -y",
     "build": "bun build ./src/index.ts --target=bun --outdir=dist",
     "start": "NODE_ENV=production bun run dist/index.js"
