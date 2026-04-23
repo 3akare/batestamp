@@ -1,0 +1,13 @@
+{
+    "rewrites": [
+        {
+            "source": "/api/(.*)",
+            "destination": "/api/[[...slug]].ts"
+        }
+    ],
+    "functions": {
+        "api/[[...slug]].ts": {
+            "runtime": "vercel-bun@1.2.0"
+        }
+    }
+}
