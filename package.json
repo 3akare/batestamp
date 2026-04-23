@@ -1,0 +1,23 @@
+{
+  "name": "batestamp",
+  "version": "1.0.0",
+  "private": true,
+  "workspaces": [
+    "api",
+    "client"
+  ],
+  "scripts": {
+    "dev": "concurrently -c \"cyan,magenta\" -n \"api,client\" \"bun run dev:api\" \"bun run dev:client\"",
+    "build": "bun run build:api && bun run build:client",
+    "start": "concurrently -c \"cyan,magenta\" -n \"api,client\" \"bun run start:api\" \"bun run start:client\"",
+    "dev:api": "cd api && bun run dev",
+    "dev:client": "cd client && bun run dev",
+    "build:api": "cd api && bun run build",
+    "build:client": "cd client && bun run build",
+    "start:api": "cd api && bun run start",
+    "start:client": "cd client && bun run preview"
+  },
+  "devDependencies": {
+    "concurrently": "^8.2.2"
+  }
+}

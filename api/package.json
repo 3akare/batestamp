@@ -3,9 +3,14 @@
   "version": "1.0.50",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "dev": "bun run --watch src/index.ts"
+    "dev": "bun run --watch src/index.ts",
+    "db:migrate": "bunx --bun @better-auth/cli migrate --config src/lib/auth.ts -y",
+    "build": "bun build ./src/index.ts --target=bun --outdir=dist",
+    "start": "NODE_ENV=production bun run dist/index.js"
   },
   "dependencies": {
+    "@elysiajs/cors": "^1.4.1",
+    "better-auth": "^1.6.7",
     "elysia": "latest"
   },
   "devDependencies": {
