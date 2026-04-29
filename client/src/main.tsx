@@ -1,4 +1,4 @@
-import { ThemeProvider } from "@/components/theme-provider.tsx"
+import { ThemeProvider } from "@/components/provider/theme-provider.tsx"
 import { RouterProvider } from "react-router/dom"
 import { createRoot } from "react-dom/client"
 import { StrictMode } from "react"
