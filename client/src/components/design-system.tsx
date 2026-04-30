@@ -53,7 +53,6 @@ import { Textarea } from "@/components/ui/textarea"
 import {
   CopyIcon,
   WarningCircleIcon,
-  TrashIcon,
   ShareNetworkIcon,
   ToteIcon,
   DotsThreeIcon,
@@ -68,7 +67,9 @@ import {
   MagnifyingGlassIcon,
   GearIcon,
   CaretUpIcon,
+  UploadSimpleIcon,
 } from "@phosphor-icons/react"
+import { Link } from "react-router"
 
 export default function DesignSystem() {
   const [sliderValue, setSliderValue] = React.useState<readonly number[]>([500])
@@ -136,9 +137,11 @@ export default function DesignSystem() {
                 <Card className="flex size-8 items-center justify-center rounded-md p-0 ring ring-border *:[svg]:size-4">
                   <WarningCircleIcon />
                 </Card>
-                <Card className="flex size-8 items-center justify-center rounded-md p-0 ring ring-border *:[svg]:size-4">
-                  <TrashIcon />
-                </Card>
+                <Link to={"/file-upload"}>
+                  <Card className="flex size-8 items-center justify-center rounded-md p-0 ring ring-border *:[svg]:size-4">
+                    <UploadSimpleIcon />
+                  </Card>
+                </Link>
                 <Card className="flex size-8 items-center justify-center rounded-md p-0 ring ring-border *:[svg]:size-4">
                   <ShareNetworkIcon />
                 </Card>
