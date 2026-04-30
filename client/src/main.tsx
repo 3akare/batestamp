@@ -5,10 +5,12 @@ import { StrictMode } from "react"
 
 import "./index.css"
 import { router } from "./routes.ts"
+import { Toaster } from "./components/ui/sonner.tsx"
 
 createRoot(document.getElementById("root")!).render(
   <StrictMode>
     <ThemeProvider defaultTheme="light" storageKey="vite-ui-theme">
+      <Toaster />
       <RouterProvider router={router} />
     </ThemeProvider>
   </StrictMode>

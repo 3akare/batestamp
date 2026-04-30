@@ -22,9 +22,7 @@ const app = new Elysia()
     "/api/v1/get-presigned-url",
     async ({ body }) => {
       const { fileName, fileType } = body;
-      const url = await getUploadUrl(fileName, fileType);
-      console.log(url);
-      return { url };
+      return { url: await getUploadUrl(fileName, fileType) };
     },
     {
       body: t.Object({

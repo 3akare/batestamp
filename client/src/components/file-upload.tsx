@@ -1,5 +1,5 @@
-import * as React from "react"
-import { UploadSimpleIcon } from "@phosphor-icons/react"
+import { useRef, useState } from "react"
+import { SpinnerIcon, UploadSimpleIcon } from "@phosphor-icons/react"
 
 import { Button } from "@/components/ui/button"
 import {
@@ -10,9 +10,12 @@ import {
   CardTitle,
 } from "@/components/ui/card"
 import { Input } from "@/components/ui/input"
+import { toast } from "sonner"
 
 export default function FileUpload() {
-  const fileInputRef = React.useRef<HTMLInputElement>(null)
+  const fileInputRef = useRef<HTMLInputElement>(null)
+  const [loading, setLoading] = useState<boolean>(false)
+
   const handleButtonClick = () => {
     fileInputRef.current?.click()
   }
@@ -22,9 +25,10 @@ export default function FileUpload() {
   ) => {
     const file = event.target.files?.[0]
     if (!file) return
+    setLoading(true)
     try {
       const response = await fetch(
-        "http://localhost:3000/api/v1/get-presigned-url",
+        `${import.meta.env.VITE_BASE_API_URL}/api/v1/get-presigned-url`,
         {
           method: "POST",
           headers: {
@@ -44,12 +48,15 @@ export default function FileUpload() {
       })
 
       if (upload.ok) {
-        console.log("Success! File is now in R2.")
+        toast.success("Success! File is now in R2.")
       } else {
-        console.error("Failed to upload to R2.")
+        toast.error("Failed to upload to R2.")
       }
     } catch (error) {
-      console.error("Upload failed:", error)
+      toast.error(`Upload failed: ${error}`)
+    } finally {
+      setLoading(false)
+      if (fileInputRef.current) fileInputRef.current.value = ""
     }
   }
 
@@ -58,7 +65,7 @@ export default function FileUpload() {
       <Card className="w-full max-w-sm">
         <CardHeader>
           <CardTitle className="font-medium">File Upload</CardTitle>
-          <CardDescription className="font-geist font-light tracking-wide text-muted-foreground">
+          <CardDescription className="font-geist tracking-wide text-muted-foreground">
             Drag and drop or browse
           </CardDescription>
         </CardHeader>
@@ -76,24 +83,25 @@ export default function FileUpload() {
                 PNG, JPG, PDF up to 10MB
               </p>
             </div>
-
-            {/* 4. The Hidden Input */}
             <Input
               type="file"
               ref={fileInputRef}
               onChange={handleFileChange}
-              className="hidden" // Hides it from view but keeps it in the DOM
+              className="hidden"
               accept="image/png, image/jpeg, application/pdf"
             />
-
-            {/* 5. The Trigger Button (Maintains exact UI) */}
             <Button
               variant="default"
-              className="px-2 py-3 text-xs"
+              className="h-7 w-28 text-xs"
               onClick={handleButtonClick}
               type="button"
+              disabled={loading}
             >
-              Browse Files
+              {!loading ? (
+                "Browse Files"
+              ) : (
+                <SpinnerIcon className="animate-spin" />
+              )}
             </Button>
           </div>
         </CardContent>
