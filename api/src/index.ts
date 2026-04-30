@@ -32,7 +32,11 @@ const app = new Elysia()
     },
   );
 
-app.listen(3000);
+app.listen({
+  port: 3000,
+  hostname: "0.0.0.0",
+});
+
 console.log(
   `[${process.env.NODE_ENV ?? "development"}] ${app.server?.hostname}:${app.server?.port}`,
 );
