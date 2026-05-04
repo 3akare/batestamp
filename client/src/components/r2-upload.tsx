@@ -12,7 +12,7 @@ import {
 import { Input } from "@/components/ui/input"
 import { toast } from "sonner"
 
-export default function FileUpload() {
+export default function R2Upload() {
   const fileInputRef = useRef<HTMLInputElement>(null)
   const [loading, setLoading] = useState<boolean>(false)
 

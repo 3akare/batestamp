@@ -1,25 +1,17 @@
 import { useCallback, useRef, useState } from "react"
 import { SpinnerIcon } from "@phosphor-icons/react"
 import { CloudArrowUpIcon } from "@phosphor-icons/react/dist/ssr"
-
 import { Button } from "@/components/ui/button"
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
 import { Input } from "@/components/ui/input"
+import { useAddFiles } from "@/store/use-file-store"
 
-export default function WorkSpacePage() {
-  return (
-    <div className="flex min-h-screen w-full flex-row bg-muted p-4 dark:bg-background">
-      <div className="flex h-full w-75 shrink-0 flex-col gap-2 xl:w-75">
-        <FileUploader />
-      </div>
-    </div>
-  )
-}
-
-function FileUploader() {
+export default function FileUploader() {
   const fileInputRef = useRef<HTMLInputElement>(null)
   const [isDragging, setIsDragging] = useState<boolean>(false)
   const [isLoading, setIsLoading] = useState<boolean>(false)
+
+  const addFiles = useAddFiles()
 
   const handleBrowse = () => fileInputRef.current?.click()
 
@@ -29,30 +21,35 @@ function FileUploader() {
   }, [])
 
   const handleDragLeave = useCallback(() => setIsDragging(false), [])
-  const processFiles = async (files: FileList | null) => {
-    if (!files || files.length === 0) return
-    setIsLoading(true)
 
-    try {
-      for (let i = 0; i < files.length; i++) {
-        console.log("File detected:", files[i])
+  const processFiles = useCallback(
+    async (files: FileList | null) => {
+      if (!files || files.length === 0) return
+      setIsLoading(true)
+      try {
+        const filesArray = Array.from(files)
+        await new Promise((resolve) => setTimeout(resolve, 1000))
+        addFiles(filesArray)
+      } catch (error) {
+        console.log("Error processing files:", error)
+      } finally {
+        setIsLoading(false)
+        if (fileInputRef.current) fileInputRef.current.value = ""
       }
-    } catch (error) {
-      console.log("Error processing files:", error)
-    } finally {
-      setIsLoading(false)
-      if (fileInputRef.current) fileInputRef.current.value = ""
-    }
-  }
+    },
+    [addFiles]
+  )
 
-  const handleDrop = useCallback((e: React.DragEvent) => {
-    e.preventDefault()
-    setIsDragging(false)
-
-    if (e.dataTransfer.files && e.dataTransfer.files.length > 0) {
-      processFiles(e.dataTransfer.files)
-    }
-  }, [])
+  const handleDrop = useCallback(
+    (e: React.DragEvent) => {
+      e.preventDefault()
+      setIsDragging(false)
+      if (e.dataTransfer.files && e.dataTransfer.files.length > 0) {
+        processFiles(e.dataTransfer.files)
+      }
+    },
+    [processFiles]
+  )
 
   const handleFileChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     processFiles(event.target.files)
@@ -102,10 +99,10 @@ function FileUploader() {
             onClick={handleBrowse}
             disabled={isLoading}
           >
-            {!isLoading ? (
-              "Browse Files"
-            ) : (
+            {isLoading ? (
               <SpinnerIcon className="animate-spin" />
+            ) : (
+              "Browse Files"
             )}
           </Button>
         </div>

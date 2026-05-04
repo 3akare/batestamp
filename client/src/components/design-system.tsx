@@ -131,9 +131,11 @@ export default function DesignSystem() {
           <Card>
             <CardContent>
               <div className="grid grid-cols-8 place-items-center gap-4">
-                <Card className="flex size-8 items-center justify-center rounded-md p-0 ring ring-border *:[svg]:size-4">
-                  <CopyIcon />
-                </Card>
+                <Link to={"/helper"}>
+                  <Card className="flex size-8 items-center justify-center rounded-md p-0 ring ring-border *:[svg]:size-4">
+                    <CopyIcon />
+                  </Card>
+                </Link>
                 <Card className="flex size-8 items-center justify-center rounded-md p-0 ring ring-border *:[svg]:size-4">
                   <WarningCircleIcon />
                 </Card>
