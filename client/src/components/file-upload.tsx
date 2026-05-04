@@ -65,12 +65,12 @@ export default function FileUpload() {
       <Card className="w-full max-w-sm">
         <CardHeader>
           <CardTitle className="font-medium">File Upload</CardTitle>
-          <CardDescription className="font-geist tracking-wide text-muted-foreground">
+          <CardDescription className="font-geist font-light text-muted-foreground">
             Drag and drop or browse
           </CardDescription>
         </CardHeader>
         <CardContent>
-          <div className="flex flex-col items-center justify-center gap-4 rounded-xl border-2 border-dashed border-border bg-card px-3 py-6">
+          <div className="flex flex-col items-center justify-center gap-4 rounded-xl border border-dashed border-border bg-card px-3 py-6">
             <div className="flex size-8 items-center justify-center rounded-md bg-muted p-0 *:[svg]:size-4">
               <UploadSimpleIcon className="font-semibold" />
             </div>

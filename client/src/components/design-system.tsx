@@ -154,9 +154,11 @@ export default function DesignSystem() {
                 <Card className="flex size-8 items-center justify-center rounded-md p-0 ring ring-border *:[svg]:size-4">
                   <SpinnerIcon className="animate-spin" />
                 </Card>
-                <Card className="flex size-8 items-center justify-center rounded-md p-0 ring ring-border *:[svg]:size-4">
-                  <PlusIcon />
-                </Card>
+                <Link to="/workspace">
+                  <Card className="flex size-8 items-center justify-center rounded-md p-0 ring ring-border *:[svg]:size-4">
+                    <PlusIcon />
+                  </Card>
+                </Link>
                 <Card className="flex size-8 items-center justify-center rounded-md p-0 ring ring-border *:[svg]:size-4">
                   <MinusIcon />
                 </Card>
